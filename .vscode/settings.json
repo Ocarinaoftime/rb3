@@ -119,6 +119,5 @@
     }
   ],
   "python.analysis.typeCheckingMode": "standard",
-  "cmake.ignoreCMakeListsMissing": true,
-  "C_Cpp.errorSquiggles": "enabled"
+  "cmake.ignoreCMakeListsMissing": true
 }
