@@ -52,12 +52,6 @@ ECResult ec::getTmd(const ECAsyncOpEnv &env, const ECString &str, unsigned short
 }
 
 
-ECVector<ec::ECNamValStr>::ECVector() {
-    this->m_Ptr = 0;
-    this->m_Count = 0;
-    this->m_Capacity = 0;
-}
-
 
 
 
