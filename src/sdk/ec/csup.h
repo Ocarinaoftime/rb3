@@ -72,5 +72,5 @@ struct ECProgress {
 };
 
 namespace ec {
-    unsigned long long getExternalErrCode(ECProgress *progress);
+    unsigned long getExternalErrCode(ECProgress *progress);
 }

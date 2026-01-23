@@ -14,7 +14,7 @@ int EC_GetCustomerSupportCode(int p1) {
 }
 
 namespace ec {
-    unsigned long long getExternalErrCode(ECProgress *progress) {
+    unsigned long getExternalErrCode(ECProgress *progress) {
         ECResult status = progress->status;
         long errCode = progress->errCode;
         if (ECResult_WebServiceResError < status) {
@@ -36,18 +36,18 @@ namespace ec {
         if (status == ECResult_NotRegistered) {
             if (errCode <= 0) goto label2;
 label1:
-            if (0 < errCode) {
-                errCode = errCode + 205000;
-                if (206999 < errCode) errCode = 205000;
-                goto label3;
-            }
+            if (errCode <= 0) goto someLabel;
+            errCode = errCode + 205000;
+            if (206999 < errCode) errCode = 205000;
+            goto label3;
         }
 label2:
-        if ((status == ECResult_ContentRecvErr || status == ECResult_ECFail) || status == ECResult_RecvWSErr && errCode < 0) {
+        if ((status == ECResult_ContentRecvErr || status == ECResult_ECFail || status == ECResult_RecvWSErr) && errCode < 0) {
             errCode = 200000 - errCode;
             if (204999 < errCode) errCode = 200000;
             goto label3;
         }
+someLabel:
         if (status < ECResult_Success && (errCode = 200000 - status, 204999 < errCode)) {
             errCode = 200000;
         }
